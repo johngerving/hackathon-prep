@@ -1,5 +1,5 @@
 import type { PageServerLoad, Actions } from './$types.js';
-import { fail } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms';
 import { formSchema } from './schema';
 import { zod } from 'sveltekit-superforms/adapters';
@@ -18,8 +18,16 @@ export const actions: Actions = {
 				form
 			});
 		}
-		return {
-			form
-		};
+
+		const { email, password } = form.data;
+		const { supabase } = event.locals;
+
+		const { error } = await supabase.auth.signInWithPassword({ email, password });
+		if (error) {
+			console.error(error);
+			redirect(303, '/auth/error');
+		} else {
+			redirect(303, '/private');
+		}
 	}
 };
