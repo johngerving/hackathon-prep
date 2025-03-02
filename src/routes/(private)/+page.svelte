@@ -27,7 +27,7 @@
 <h1>Private page for user: {user?.email}</h1>
 <h2>Notes</h2>
 <ul>
-	{#each notes as note}
+	{#each notes as note (note.id)}
 		<li>{note.note}</li>
 	{/each}
 </ul>
