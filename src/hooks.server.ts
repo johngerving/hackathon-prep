@@ -68,7 +68,7 @@ const authGuard: Handle = async ({ event, resolve }) => {
 	event.locals.user = user;
 
 	if (!event.locals.session && !event.url.pathname.startsWith('/auth')) {
-		redirect(303, '/auth/login');
+		redirect(307, '/auth/login');
 	}
 
 	if (
@@ -76,7 +76,7 @@ const authGuard: Handle = async ({ event, resolve }) => {
 		event.url.pathname.startsWith('/auth') &&
 		!event.url.pathname.startsWith('/auth/logout')
 	) {
-		redirect(303, '/');
+		redirect(307, '/');
 	}
 
 	return resolve(event);
