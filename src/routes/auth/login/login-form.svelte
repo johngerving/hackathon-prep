@@ -1,14 +1,20 @@
 <script lang="ts">
 	import * as Form from '$lib/components/ui/form/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
+	import { Spinner } from '$lib/components/ui/spinner';
 	import { formSchema, type FormSchema } from './schema';
 	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 
 	let { data }: { data: { form: SuperValidated<Infer<FormSchema>> } } = $props();
 
+	let updating = $state(false);
+
 	const form = superForm(data.form, {
-		validators: zodClient(formSchema)
+		validators: zodClient(formSchema),
+		onSubmit: () => {
+			updating = true;
+		}
 	});
 
 	const { form: formData, enhance } = form;
@@ -35,5 +41,11 @@
 		<Form.Description>Enter your password.</Form.Description>
 		<Form.FieldErrors />
 	</Form.Field>
-	<Form.Button>Login</Form.Button>
+	<Form.Button disabled={updating}>
+		{#if updating}
+			<Spinner />
+		{:else}
+			Login
+		{/if}
+	</Form.Button>
 </form>

@@ -19,6 +19,8 @@ export const actions: Actions = {
 			});
 		}
 
+		await new Promise((r) => setTimeout(r, 2000));
+
 		const { email, password } = form.data;
 		const { supabase } = event.locals;
 
