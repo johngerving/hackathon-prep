@@ -7,6 +7,7 @@ export const load: PageServerLoad = async ({ depends, locals: { supabase } }) =>
 	const { data: notes } = (await supabase.from('notes').select('id,note').order('id')) as {
 		data: Note[];
 	};
+	console.log(notes);
 	return { notes: notes ?? [] };
 };
 

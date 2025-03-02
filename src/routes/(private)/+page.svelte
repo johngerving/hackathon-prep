@@ -8,6 +8,14 @@
 
 	let { data } = $props();
 	let { notes, user } = $derived(data);
+
+	$effect(() => {
+		console.log(data);
+	});
+
+	$effect(() => {
+		console.log(notes);
+	});
 </script>
 
 <h1>Private page for user: {user?.email}</h1>
