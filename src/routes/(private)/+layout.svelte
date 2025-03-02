@@ -1,20 +1,38 @@
 <script>
+	import { enhance } from '$app/forms';
+	import { Button } from '$lib/components/ui/button';
+	import { Spinner } from '$lib/components/ui/spinner';
+
 	let { data, children } = $props();
 	let { supabase } = $derived(data);
 
-	const logout = async () => {
-		const { error } = await supabase.auth.signOut();
-		if (error) {
-			console.error(error);
-		}
-	};
+	let updating = $state(false);
 </script>
 
 <header>
 	<nav>
 		<a href="/">Home</a>
 	</nav>
-	<button onclick={logout}>Logout</button>
+	<form
+		method="POST"
+		action="/auth/logout"
+		use:enhance={() => {
+			updating = true;
+
+			return async ({ update }) => {
+				await update();
+				updating = false;
+			};
+		}}
+	>
+		<Button type="submit" disabled={updating}>
+			{#if updating}
+				<Spinner />
+			{:else}
+				Logout
+			{/if}
+		</Button>
+	</form>
 </header>
 <main>
 	{@render children()}

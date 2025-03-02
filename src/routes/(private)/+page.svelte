@@ -1,39 +1,31 @@
 <script lang="ts">
-	import { invalidate } from '$app/navigation';
-	import type { EventHandler } from 'svelte/elements';
-
-	import type { PageData } from './$types';
+	import { enhance } from '$app/forms';
+	import { Button } from '$lib/components/ui/button';
+	import { Input } from '$lib/components/ui/input';
+	import { fly } from 'svelte/transition';
+	import { flip } from 'svelte/animate';
+	import MaterialSymbolsDeleteOutlineSharp from '~icons/material-symbols/delete-outline-sharp';
 
 	let { data } = $props();
-	let { notes, supabase, user } = $derived(data);
-
-	const handleSubmit: EventHandler<SubmitEvent, HTMLFormElement> = async (evt) => {
-		evt.preventDefault();
-		if (!evt.target) return;
-
-		const form = evt.target as HTMLFormElement;
-
-		const note = (new FormData(form).get('note') ?? '') as string;
-		if (!note) return;
-
-		const { error } = await supabase.from('notes').insert({ note });
-		if (error) console.error(error);
-
-		invalidate('supabase:db:notes');
-		form.reset();
-	};
+	let { notes, user } = $derived(data);
 </script>
 
 <h1>Private page for user: {user?.email}</h1>
 <h2>Notes</h2>
 <ul>
 	{#each notes as note (note.id)}
-		<li>{note.note}</li>
+		<li class="mb-3" in:fly={{ x: -100 }} out:fly={{ x: -100 }} animate:flip={{ duration: 200 }}>
+			<form method="POST" action="?/delete" use:enhance>
+				<input type="hidden" name="id" value={note.id} />
+				<span>{note.note}</span>
+				<Button type="submit"><MaterialSymbolsDeleteOutlineSharp /></Button>
+			</form>
+		</li>
 	{/each}
 </ul>
-<form onsubmit={handleSubmit}>
+<form method="POST" action="?/create" use:enhance>
 	<label>
 		Add a note
-		<input name="note" type="text" />
+		<Input name="note" type="text" autocomplete="off" />
 	</label>
 </form>

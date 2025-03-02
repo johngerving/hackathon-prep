@@ -14,6 +14,9 @@
 		validators: zodClient(formSchema),
 		onSubmit: () => {
 			updating = true;
+		},
+		onResult: () => {
+			updating = false;
 		}
 	});
 

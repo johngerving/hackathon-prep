@@ -16,9 +16,10 @@
 	"devDependencies": {
 		"@eslint/compat": "^1.2.5",
 		"@eslint/js": "^9.18.0",
+		"@iconify-json/material-symbols": "^1.2.14",
 		"@sveltejs/adapter-cloudflare-workers": "^2.7.0",
 		"@sveltejs/kit": "^2.16.0",
-		"@sveltejs/vite-plugin-svelte": "^5.0.0",
+		"@sveltejs/vite-plugin-svelte": "^5.0.3",
 		"@tailwindcss/forms": "^0.5.10",
 		"@tailwindcss/typography": "^0.5.16",
 		"autoprefixer": "^10.4.20",
@@ -45,9 +46,11 @@
 		"zod": "^3.24.2"
 	},
 	"dependencies": {
+		"@iconify-json/mdi": "^1.2.3",
 		"@supabase/ssr": "^0.5.2",
 		"@supabase/supabase-js": "^2.49.1",
 		"@sveltejs/adapter-cloudflare": "^5.0.3",
+		"unplugin-icons": "^22.1.0",
 		"wrangler": "^3.111.0"
 	}
 }
