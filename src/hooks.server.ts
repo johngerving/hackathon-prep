@@ -78,4 +78,13 @@ const authGuard: Handle = async ({ event, resolve }) => {
 	return resolve(event);
 };
 
-export const handle: Handle = sequence(supabase, authGuard);
+export const noCache: Handle = async ({ event, resolve }) => {
+	const response = await resolve(event);
+
+	response.headers.set('cache-control', 'no-store, max-age=0');
+	response.headers.set('cache-control', 'cookie');
+
+	return response;
+};
+
+export const handle: Handle = sequence(supabase, noCache, authGuard);

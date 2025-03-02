@@ -66,7 +66,7 @@
   resolved "https://registry.yarnpkg.com/@cloudflare/workerd-windows-64/-/workerd-windows-64-1.20250214.0.tgz#4e7666cc41196a215e11e720b27518311c957fa7"
   integrity sha512-GMwMyFbkjBKjYJoKDhGX8nuL4Gqe3IbVnVWf2Q6086CValyIknupk5J6uQWGw2EBU3RGO3x4trDXT5WphQJZDQ==
 
-"@cloudflare/workers-types@^4.20231121.0":
+"@cloudflare/workers-types@^4.20231121.0", "@cloudflare/workers-types@^4.20241106.0":
   version "4.20250224.0"
   resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-4.20250224.0.tgz#9e66975c6ce5d063a7916de74929ea868a6a1d72"
   integrity sha512-j6ZwQ5G2moQRaEtGI2u5TBQhVXv/XwOS5jfBAheZHcpCM07zm8j0i8jZHHLq/6VA8e6VRjKohOyj5j6tZ1KHLQ==
@@ -1007,6 +1007,15 @@
   dependencies:
     "@cloudflare/workers-types" "^4.20231121.0"
     esbuild "^0.24.0"
+
+"@sveltejs/adapter-cloudflare@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@sveltejs/adapter-cloudflare/-/adapter-cloudflare-5.0.3.tgz#aa19fdec756825c6e6efa68ed56aee1dac33cedf"
+  integrity sha512-jRJmt3JtGp5ockFxoDLKPisK0RPGnitNfHS9+xhRTpRaBV7jS/fQfAmpaey7rwKWaDUnkoHx0DV0WvISHNfUEA==
+  dependencies:
+    "@cloudflare/workers-types" "^4.20241106.0"
+    esbuild "^0.24.0"
+    worktop "0.8.0-next.18"
 
 "@sveltejs/kit@^2.16.0":
   version "2.17.3"
@@ -2683,6 +2692,11 @@ regenerator-runtime@^0.14.0:
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.14.1.tgz#356ade10263f685dda125100cd862c1db895327f"
   integrity sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==
 
+regexparam@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/regexparam/-/regexparam-3.0.0.tgz#1673e09d41cb7fd41eaafd4040a6aa90daa0a21a"
+  integrity sha512-RSYAtP31mvYLkAHrOlh25pCNQ5hWnT106VukGaaFfuJrZFkGRX5GhUAdPqpSDXxOhA2c4akmRuplv1mRqnBn6Q==
+
 resolve-from@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-4.0.0.tgz#4abcd852ad32dd7baabfe9b40e00a36db5f392e6"
@@ -3322,6 +3336,14 @@ workerd@1.20250214.0:
     "@cloudflare/workerd-linux-64" "1.20250214.0"
     "@cloudflare/workerd-linux-arm64" "1.20250214.0"
     "@cloudflare/workerd-windows-64" "1.20250214.0"
+
+worktop@0.8.0-next.18:
+  version "0.8.0-next.18"
+  resolved "https://registry.yarnpkg.com/worktop/-/worktop-0.8.0-next.18.tgz#546b1ece7b34d01708ac2abec7c1110cd8874bfd"
+  integrity sha512-+TvsA6VAVoMC3XDKR5MoC/qlLqDixEfOBysDEKnPIPou/NvoPWCAuXHXMsswwlvmEuvX56lQjvELLyLuzTKvRw==
+  dependencies:
+    mrmime "^2.0.0"
+    regexparam "^3.0.0"
 
 wrangler@^3.111.0:
   version "3.111.0"
